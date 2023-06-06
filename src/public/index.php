@@ -1,17 +1,17 @@
 <?php
+require_once __DIR__ . '/../app/autoloader.php';
 
-// phpinfo();
+use app\classes\Home;
+use app\classes\Invoice;
+use app\classes\Router;
 
-require __DIR__ . '/../app/invoice.php';
-require __DIR__ . '/../app/invoiceCollection.php';
-require __DIR__ . '/../app/router.php';
 
-use App\Invoice;
-use App\Router;
 
 $route = new Router();
 
-$route->get('/', [Invoice::class, 'index']);
-
+$route->get('/', [Home::class, 'index'])
+      ->get('/invoice', [Invoice::class, 'index'])
+      ->get('/invoice/create', [Invoice::class, 'create'])
+      ->post('/invoice/create', [Invoice::class, 'store']);
 
 $route->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
