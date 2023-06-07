@@ -1,8 +1,8 @@
 <?php
 
-namespace app\classes;
+namespace app\controllers;
 
-class Invoice {
+class InvoiceController {
     public function __construct(){
 
     }

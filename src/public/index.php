@@ -6,19 +6,19 @@ setcookie('username', 'firas', time() + 3600);
 
 define('STORAGE_PATH', __DIR__ . '/../storage');
 
-use app\classes\Home;
-use app\classes\Invoice;
-use app\classes\Router;
+use app\controllers\HomeController;
+use app\controllers\InvoiceController;
+use app\Router;
 
 
 
 $route = new Router();
 
-$route->get('/', [Home::class, 'index'])
-      ->get('/invoice', [Invoice::class, 'index'])
-      ->get('/invoice/create', [Invoice::class, 'create'])
-      ->post('/invoice/create', [Invoice::class, 'store'])
-      ->post('/upload', [Home::class, 'upload']);
+$route->get('/', [HomeController::class, 'index'])
+      ->get('/invoice', [InvoiceController::class, 'index'])
+      ->get('/invoice/create', [InvoiceController::class, 'create'])
+      ->post('/invoice/create', [InvoiceController::class, 'store'])
+      ->post('/upload', [HomeController::class, 'upload']);
 
 $route->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
 

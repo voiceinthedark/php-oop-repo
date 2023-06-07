@@ -1,0 +1,1 @@
+<form method='post' action='/invoice/create'>Amount<input name='amount' type='input' /><button>Submit</button></form>

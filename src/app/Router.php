@@ -1,6 +1,6 @@
 <?php
 
-namespace app\classes;
+namespace app;
 
 use ReflectionMethod;
 
@@ -21,7 +21,7 @@ class Router
      * @param mixed $request_method
      * @param mixed $route
      * @param | $action
-     * @return \app\classes\Router
+     * @return \app\Router
      */
     public function route(string $request_method, string $route, callable|array $action): self
     {
