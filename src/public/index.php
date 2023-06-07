@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../app/autoloader.php';
 
+session_start();
+
+setcookie('username', 'firas', time() + 3600);
+
 use app\classes\Home;
 use app\classes\Invoice;
 use app\classes\Router;

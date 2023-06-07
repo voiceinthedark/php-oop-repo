@@ -6,7 +6,8 @@ class Home{
 
     public function index() : void
     {
-        echo 'Home';
+        echo 'Home' . '<br>';
+        echo $_COOKIE['username'] . '<br>';
     }
 
 }
