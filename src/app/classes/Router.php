@@ -2,17 +2,42 @@
 
 namespace app\classes;
 
-class Router {
+use ReflectionMethod;
 
+/**
+ * Summary of Router
+ */
+class Router
+{
+
+    /**
+     * Summary of routes
+     * @var 
+     */
     private array $routes;
 
-    public function route(string $request_method, string $route, callable|array $action) : self {
+    /**
+     * Summary of route
+     * @param mixed $request_method
+     * @param mixed $route
+     * @param | $action
+     * @return \app\classes\Router
+     */
+    public function route(string $request_method, string $route, callable|array $action): self
+    {
 
-        $this->routes[$request_method][$route] = $action;        
+        $this->routes[$request_method][$route] = $action;
 
         return $this;
     }
 
+    /**
+     * Summary of resolve
+     * @param mixed $request
+     * @param mixed $request_method
+     * @throws \InvalidArgumentException
+     * @return void
+     */
     public function resolve(string $request, string $request_method = 'get')
     {
 
@@ -33,7 +58,12 @@ class Router {
             if (class_exists($class)) {
                 $instance = new $class();
                 if (method_exists($instance, $method)) {
-                    $instance->$method();
+                    $reflection_return = new ReflectionMethod($instance, $method);
+                    if ($reflection_return->getReturnType()->getName() === 'void') {
+                        $instance->$method();
+                    } else {
+                        echo $instance->$method();
+                    }
                 }
             }
         }
@@ -46,9 +76,9 @@ class Router {
      * @param callable|array $action The action to take when the route is requested
      * @return self A new instance of the class with the added GET route
      */
-    public function get(string $route, callable|array $action) : self {
-        return $this->route('get' ,$route, $action);
-        
+    public function get(string $route, callable|array $action): self
+    {
+        return $this->route('get', $route, $action);
     }
 
     /**
@@ -63,7 +93,12 @@ class Router {
         return $this->route('post', $route, $action);
     }
 
-    public function routes() : array {
+    /**
+     * Summary of routes
+     * @return array
+     */
+    public function routes(): array
+    {
         return $this->routes;
     }
 }
