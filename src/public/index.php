@@ -5,10 +5,12 @@ session_start();
 setcookie('username', 'firas', time() + 3600);
 
 define('STORAGE_PATH', __DIR__ . '/../storage');
+define('VIEWS_PATH', __DIR__ . '/../views');
 
 use app\controllers\HomeController;
 use app\controllers\InvoiceController;
 use app\Router;
+
 
 
 

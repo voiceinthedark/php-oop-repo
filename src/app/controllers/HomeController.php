@@ -2,22 +2,14 @@
 
 namespace app\controllers;
 
+use app\View;
+
 class HomeController
 {
 
-
-
-    public function index(): string
+    public function index() : string
     {
-        $title = '<h1>Home Page</h1>';
-        $form = <<<HTML
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            Upload File: <input type="file" name="file">
-            <input type="submit" value="Upload">
-        </form>
-    HTML;
-
-        return $title . $form;
+        return View::make('index');
     }
 
 
