@@ -3,12 +3,16 @@
 namespace app\controllers;
 
 use app\View;
+use PDO;
 
 class HomeController
 {
 
     public function index() : string
     {
+        // open pdo connection to my_db database that runs on a docker container
+        $db = new PDO('mysql:host=db;dbname=my_db', 'root', 'root', []);
+
         return View::make('index', ['title' => 'Home']);
     }
 
