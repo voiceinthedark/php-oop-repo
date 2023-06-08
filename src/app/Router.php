@@ -43,10 +43,10 @@ class Router
 
 
         $route = explode('?', $request)[0] ?? $request;
-        $action = $this->routes[$request_method][$route];
+        $action = $this->routes[$request_method][$route] ?? null;
 
         if (!$action) {
-            throw new \InvalidArgumentException('404 error');
+            throw new \app\exceptions\RouteNotFound('404 error');
         }
 
         if (is_callable($action)) {

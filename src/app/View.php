@@ -33,6 +33,11 @@ public function render() : string {
         throw new ViewDoesNotExist();
     }
 
+    // Extract the data
+    foreach($this->data as $key => $value){
+        $$key = $value;
+    }
+
     // Include the view file
     include $viewpath;
     
