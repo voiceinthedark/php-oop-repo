@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../app/autoloader.php';
+require __DIR__ . '/../vendor/autoload.php';
+
 
 session_start();
 setcookie('username', 'firas', time() + 3600);
@@ -11,6 +13,10 @@ use app\controllers\HomeController;
 use app\controllers\InvoiceController;
 use app\Router;
 use app\View;
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
 
 try {
 

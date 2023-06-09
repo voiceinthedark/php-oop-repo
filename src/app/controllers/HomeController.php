@@ -4,28 +4,35 @@ namespace app\controllers;
 
 use app\View;
 use PDO;
+use Dotenv;
+
+require __DIR__ . '/../../vendor/autoload.php';
+
+
 
 class HomeController
 {
-
+    
     public function index(): string
-    {
-        $id = 15;
+    {       
         try {
 
             // open pdo connection to my_db database that runs on a docker container
-            $db = new PDO('mysql:host=db;dbname=my_db', 'root', 'root', [
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
-            ]);
+            $db = new PDO(
+                'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'],
+                [
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+                ]);
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
 
-        $name = 'Valentina Rossa';
-        $email = 'ValentinaRos@example.com';
+        $name = 'Marcus Cracius';
+        $email = 'MarcusCrasius@example.com';
         $isactive = 1;
         $createdat = date('Y-m-d H:i:s');
-        $amount = 863.75;
+        $amount = 33.15;
+
 
         try {
             $db->beginTransaction();
